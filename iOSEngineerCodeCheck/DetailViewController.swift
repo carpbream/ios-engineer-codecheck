@@ -18,7 +18,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var forkCountLabel: UILabel!
     @IBOutlet weak var issueCountLabel: UILabel!
 
-    var listViewController: ListViewController?
+    weak var listViewController: ListViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
