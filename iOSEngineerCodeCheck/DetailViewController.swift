@@ -18,37 +18,82 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var forkCountLabel: UILabel!
     @IBOutlet weak var issueCountLabel: UILabel!
 
-    var listViewController: ListViewController!
+    var listViewController: ListViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let repo = listViewController.repositories[listViewController.index]
+        guard let listViewController = self.listViewController else {
+            print("ListViewController is not loaded.")
+            DispatchQueue.main.async {
+                self.dismiss(animated: true)
+            }
+            return
+        }
+
+        guard let idx = listViewController.index else {
+            print("ERROR: listViewController.index is not set.")
+            DispatchQueue.main.async {
+                self.dismiss(animated: true)
+            }
+            return
+        }
+
+        if listViewController.repositories.count <= idx {
+            print("ERROR: repository index exceeds the number of count.")
+            DispatchQueue.main.async {
+                self.dismiss(animated: true)
+            }
+            return
+        }
+
+        let repo = listViewController.repositories[idx]
 
         langageLabel.text = "Written in \(repo["language"] as? String ?? "")"
         starCountLabel.text = "\(repo["stargazers_count"] as? Int ?? 0) stars"
         watcherCountLabel.text = "\(repo["wachers_count"] as? Int ?? 0) watchers"
         forkCountLabel.text = "\(repo["forks_count"] as? Int ?? 0) forks"
         issueCountLabel.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
-        getImage()
+        getImage(repository: repo)
 
     }
 
-    func getImage() {
-        let repo = listViewController.repositories[listViewController.index]
+    func getImage(repository: [String: Any]) {
 
-        repositoryNameLabel.text = repo["full_name"] as? String
-
-        if let owner = repo["owner"] as? [String: Any] {
-            if let ownerIconImageURL = owner["avatar_url"] as? String {
-                URLSession.shared.dataTask(with: URL(string: ownerIconImageURL)!) { (data, _, _) in
-                    let img = UIImage(data: data!)!
-                    DispatchQueue.main.async {
-                        self.ownerIconImageView.image = img
-                    }
-                }.resume()
-            }
+        if repository.keys.contains("full_name") {
+            repositoryNameLabel.text = repository["full_name"] as? String
         }
+
+        guard let owner = repository["owner"] as? [String: Any] else {
+            print("ERROR: owner in repository is not set.")
+            return
+        }
+
+        guard let ownerIconImageURL = owner["avatar_url"] as? String else {
+            print("ERROR: owner in repository is not set.")
+            return
+        }
+
+        guard let url = URL(string: ownerIconImageURL) else {
+            print("ERROR: invalid url string.")
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { (data, _, _) in
+            guard let data = data else {
+                print("ERROR: data is nil.")
+                return
+            }
+
+            guard let image = UIImage(data: data) else {
+                print("ERROR: invalid data. data: \(data.description)")
+                return
+            }
+
+            DispatchQueue.main.async {
+                self.ownerIconImageView.image = image
+            }
+        }.resume()
     }
 
 }

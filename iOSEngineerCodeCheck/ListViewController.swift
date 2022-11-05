@@ -14,9 +14,11 @@ class ListViewController: UITableViewController, UISearchBarDelegate {
 
     var repositories: [[String: Any]] = []
     var urlSessionTask: URLSessionTask?
-    var searchWard: String!
-    var urlString: String!
-    var index: Int!
+    var searchWard: String = ""
+    var urlString: String = ""
+    var index: Int? = 0
+
+    var detailViewController: DetailViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +28,7 @@ class ListViewController: UITableViewController, UISearchBarDelegate {
     }
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        // 検索バーのテキストを空にする
+        // 検索バーに入力開始する際、検索バーのテキストを空にする
         searchBar.text = ""
         return true
     }
@@ -36,28 +38,57 @@ class ListViewController: UITableViewController, UISearchBarDelegate {
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchWard = searchBar.text!
-
-        if searchWard.count != 0 {
-            urlString = "https://api.github.com/search/repositories?q=\(searchWard!)"
-            urlSessionTask = URLSession.shared.dataTask(with: URL(string: urlString)!) { data, _, _ in
-                if let obj = try! JSONSerialization.jsonObject(with: data!) as? [String: Any] {
-                    if let items = obj["items"] as? [[String: Any]] {
-                        self.repositories = items
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    }
-                }
-            }
-            // データのダウンロードを実行
-            urlSessionTask?.resume()
+        guard let searchBarText = searchBar.text else {
+            print("ERROR: search word is not set.")
+            return
         }
+
+        if searchBarText == "" {
+            print("ERROR: search word is not set.")
+            return
+        }
+
+        searchWard = searchBarText
+
+        urlString = "https://api.github.com/search/repositories?q=\(searchWard)"
+        guard let url = URL(string: urlString) else {
+            print("url is invalid.")
+            return
+        }
+
+        urlSessionTask = URLSession.shared.dataTask(with: url) { data, _, _ in
+            guard let data = data else {
+                print("data is nil.")
+                return
+            }
+
+            do {
+                let jsonObj = try JSONSerialization.jsonObject(with: data)
+
+                guard let obj = jsonObj as? [String: Any] else {
+                    print("ERROR: data is incorrect format.")
+                    return
+                }
+
+                guard obj.keys.contains("items"), let items = obj["items"] as? [[String: Any]] else {
+                    print("ERROR: data is incorrect format.")
+                    return
+                }
+
+                self.repositories = items
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        // データのダウンロードを実行
+        urlSessionTask?.resume()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Detail"{
-            let detailViewController = segue.destination as! DetailViewController
+        if segue.identifier == "Detail", let detailViewController = segue.destination as? DetailViewController {
             detailViewController.listViewController = self
         }
     }
@@ -67,10 +98,16 @@ class ListViewController: UITableViewController, UISearchBarDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "Repository")
+
+        if repositories.count <= indexPath.row {
+            print("ERROR: repository index exceeds the number of count")
+            return cell
+        }
+
         let repository = repositories[indexPath.row]
-        cell.textLabel?.text = repository["full_name"] as? String ?? ""
-        cell.detailTextLabel?.text = repository["language"] as? String ?? ""
+        cell.textLabel?.text = repository["full_name"] as? String
+        cell.detailTextLabel?.text = repository["language"] as? String
         cell.tag = indexPath.row
         return cell
     }
