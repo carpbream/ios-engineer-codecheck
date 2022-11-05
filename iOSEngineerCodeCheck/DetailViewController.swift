@@ -51,7 +51,7 @@ class DetailViewController: UIViewController {
 
         langageLabel.text = "Written in \(repo["language"] as? String ?? "")"
         starCountLabel.text = "\(repo["stargazers_count"] as? Int ?? 0) stars"
-        watcherCountLabel.text = "\(repo["wachers_count"] as? Int ?? 0) watchers"
+        watcherCountLabel.text = "\(repo["watchers_count"] as? Int ?? 0) watchers"
         forkCountLabel.text = "\(repo["forks_count"] as? Int ?? 0) forks"
         issueCountLabel.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
         getImage(repository: repo)
