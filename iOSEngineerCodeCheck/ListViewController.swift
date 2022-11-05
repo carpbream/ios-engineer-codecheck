@@ -18,7 +18,7 @@ class ListViewController: UITableViewController, UISearchBarDelegate {
     var urlString: String = ""
     var index: Int? = 0
 
-    var detailViewController: DetailViewController!
+    var detailViewController: DetailViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
