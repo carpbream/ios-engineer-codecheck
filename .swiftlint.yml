@@ -1,0 +1,104 @@
+included:
+  - iOSEngineerCodeCheck
+  - iOSEngineerCodeCheckTests
+  - iOSEngineerCodeCheckUITests
+  
+excluded:
+  - Pods
+  - Carthage
+
+opt_in_rules:
+  - trailing_closure #できる限りトレイリングクロージャを使うべき
+  - redundant_type_annotation #不要な型宣言は省略すること
+  - unowned_variable_capture #unownedによる変数キャプチャは避け、weakを使うこと。適切に使用した場合はパフォーマンス改善に繋がるが、判断が難しくリスクを伴うため
+  - operator_usage_whitespace #オペレータは、利用する際に前後1つずつのホワイトスペースで囲むべきです
+  - closure_spacing #  -クロージャ式は、各中括弧の内側に1つのスペースを持つ必要があります。
+
+disabled_rules:
+  - no_fallthrough_only
+  - no_space_in_method_call
+  - notification_center_detachment
+  - for_where
+  - function_body_length
+  - function_parameter_count
+#  - generic_type_name #  -一般的なタイプ名は、英数字のみを含み、大文字で始まり、長さは1～20文字でなければなりません。
+  - identifier_name
+#  - implicit_getter #  -読み取り専用のcomputed propertyはget キーワードの使用を避けるべきです。
+  - inert_defer
+  - is_disjoint
+  - large_tuple
+  - leading_whitespace 
+#  - legacy_cggeometry_functions #構造体のエクステンションのプロパティとメソッドは、従来の関数より優先すべきです
+#  - legacy_constant #構造スコープ定数は従来のグローバル定数より優先すべきです
+#  - legacy_constructor #ファクトリメソッドではなくコンストラクタを使うべきです
+  - legacy_hashing
+#  - legacy_nsgeometry_functions #従来の関数より構造体のエクステンションのプロパティとメソッドを使うべきです
+  - line_length
+#  - mark #  -MARK コメントは有効なフォーマットでなければなりません。
+#  - multiple_closures_with_trailing_closure #複数のクロージャを引数とする場合、トレイリングクロージャを使うべきではありません
+  - nesting
+  - nsobject_prefer_isequal
+# - opening_brace #オープンブレースはスペース1つの後かつ、定義と同じ行に配置すること
+#  - operator_whitespace #オペレータは、定義する際に前後1つずつのホワイトスペースで囲むべきです
+  - orphaned_doc_comment
+  - private_over_fileprivate
+  - private_unit_test
+  - protocol_property_accessors_order
+  - reduce_boolean
+  - redundant_discardable_let
+  - redundant_objc_attribute
+  - redundant_optional_initialization
+  - redundant_set_access_control
+#  - redundant_string_enum_value #型名が省略可能なときは省略すること
+#  - redundant_void_return #関数の定義で Void を返すのは冗長です
+#  - return_arrow_whitespace #戻り値の矢印と型は1つの半角スペースまたは別の行で区切るべきです
+#  - statement_position #前の定義の1つの半角スペースの後ろで同じ行にあるべきです
+  - superfluous_disable_command
+  - switch_case_alignment
+#  - syntactic_sugar #シンタックスシュガーを使うべきです
+  - todo
+#  - trailing_comma #配列や辞書の末尾の,は強制/避けるべき(今回は強制、オプションにて設定)
+#  - trailing_newline #ファイルの終端は改行で終わること
+#  - trailing_semicolon #行の末尾にセミコロンを付けるべきではありません
+#  - trailing_whitespace #クローズブレースの直前の空行を禁止
+  - type_body_length
+#  - type_name #  -タイプ名は英数字のみを含み、大文字で始まり、長さは3文字から40文字の間でなければなりません。
+  - unneeded_break_in_switch
+  - unused_capture_list
+#  - unused_closure_parameter #  -クロージャ内の未使用のパラメータは _ に置き換えてください。
+  - unused_control_flow_label
+#  - unused_enumerated #  -インデックスや項目を使用しない場合は、.enumerated()を削除することができます。
+  - unused_optional_binding
+  - unused_setter_value
+  - valid_ibinspectable
+#  - vertical_parameter_alignment #  -関数のパラメータが宣言内の複数行にある場合は、垂直方向に整列させる必要があります。
+  - vertical_whitespace
+  - void_return
+  - weak_delegate
+  - xctfail_message
+  - block_based_kvo
+  - class_delegate_protocol
+#  - closing_brace  #閉じ括弧で閉じるブレースは、途中に空白があってはいけません。
+#  - closure_parameter_position #クロージャーのパラメータは、オープニングブレースと同じライン上にある必要があります。
+#  - colon
+#  - comma
+  - compiler_protocol_init
+#  - control_statement #if,for,guard,switch,while,catch 文は条件や引数を不必要に括弧で括るべきではありません
+  - cyclomatic_complexity
+  - deployment_target
+  - discarded_notification_center_observer
+  - discouraged_direct_init
+  - duplicate_enum_cases
+  - duplicate_imports
+  - dynamic_inline
+  - empty_enum_arguments
+#  - empty_parameters #Void -> よりも優先的に () -> を使うこと。
+#  - empty_parentheses_with_trailing_closure #トレイリングクロージャを使う場合、メソッドの呼び出し後に空の括弧を記述すべきではありません
+  - file_length
+  - force_cast
+  - force_try
+  - shorthand_operator
+
+trailing_comma:
+    mandatory_comma: true
+
