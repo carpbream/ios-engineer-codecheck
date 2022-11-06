@@ -8,7 +8,8 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, ControllerProtocol {
+    typealias PresenterType = DetailViewPresenter
 
     @IBOutlet weak var ownerIconImageView: UIImageView!
     @IBOutlet weak var repositoryNameLabel: UILabel!
@@ -18,51 +19,32 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var forkCountLabel: UILabel!
     @IBOutlet weak var issueCountLabel: UILabel!
 
-    weak var listViewController: ListViewController?
+    var presenter: DetailViewPresenter?
+    var params: Any?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        guard let listViewController = self.listViewController else {
-            print("ListViewController is not loaded.")
-            DispatchQueue.main.async {
-                self.dismiss(animated: true)
-            }
+        let presenter = DetailViewPresenter(controller: self)
+        self.presenter = presenter
+        guard let item = params as? Item else {
+            print("itemが選択されていません")
+            presenter.router.back()
             return
         }
 
-        guard let idx = listViewController.index else {
-            print("ERROR: listViewController.index is not set.")
-            DispatchQueue.main.async {
-                self.dismiss(animated: true)
-            }
-            return
-        }
-
-        if listViewController.repositories.count <= idx {
-            print("ERROR: repository index exceeds the number of count.")
-            DispatchQueue.main.async {
-                self.dismiss(animated: true)
-            }
-            return
-        }
-
-        let repo = listViewController.repositories[idx]
-
-        langageLabel.text = "Written in \(repo["language"] as? String ?? "")"
-        starCountLabel.text = "\(repo["stargazers_count"] as? Int ?? 0) stars"
-        watcherCountLabel.text = "\(repo["watchers_count"] as? Int ?? 0) watchers"
-        forkCountLabel.text = "\(repo["forks_count"] as? Int ?? 0) forks"
-        issueCountLabel.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
-        repositoryNameLabel.text = "\(repo["full_name"] as? String ?? "")"
+        langageLabel.text = presenter.createLanguageText(for: item)
+        starCountLabel.text = presenter.createStarCountText(for: item)
+        watcherCountLabel.text = presenter.createWtacherCountText(for: item)
+        forkCountLabel.text = presenter.createForkCountText(for: item)
+        issueCountLabel.text = presenter.createIssuesCountText(for: item)
+        repositoryNameLabel.text = item.full_name
 
         /// 画像をダウンロードしてセットする処理。
         /// owner, ownerIconImageURLをguardletで取得していないのは、
         /// 今後、repoの内容を処理するが、ownerは利用しないような場合に、ここで処理が中断されないため。
-        if let owner = repo["owner"] as? [String: Any],
-           let ownerIconImageURL = owner["avatar_url"] as? String {
+        if let owner = item.owner {
             Task {
-                guard let image = await getImage(urlString: ownerIconImageURL) else {
+                guard let image = await getImage(urlString: owner.avatar_url) else {
                     print("ERROR: 画像の取得に失敗しました")
                     return
                 }
