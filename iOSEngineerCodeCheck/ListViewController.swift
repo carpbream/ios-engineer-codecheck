@@ -50,28 +50,19 @@ class ListViewController: UITableViewController, UISearchBarDelegate {
 
         searchWard = searchBarText
 
-        urlString = "https://api.github.com/search/repositories?q=\(searchWard)"
-        guard let url = URL(string: urlString) else {
-            print("url is invalid.")
-            return
-        }
-
-        urlSessionTask = URLSession.shared.dataTask(with: url) { data, _, _ in
-            guard let data = data else {
-                print("data is nil.")
-                return
-            }
+        Task {
+            urlString = "https://api.github.com/search/repositories?q=\(searchWard)"
 
             do {
-                let jsonObj = try JSONSerialization.jsonObject(with: data)
-
-                guard let obj = jsonObj as? [String: Any] else {
-                    print("ERROR: data is incorrect format.")
+                let apiClient = APIClient()
+                let data = try await apiClient.request(with: urlString)
+                guard let jsonObj = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                    print("ERROR: データの形式が不正です")
                     return
                 }
 
-                guard obj.keys.contains("items"), let items = obj["items"] as? [[String: Any]] else {
-                    print("ERROR: data is incorrect format.")
+                guard let items = jsonObj["items"] as? [[String: Any]] else {
+                    print("ERROR: データの形式が不正です")
                     return
                 }
 
@@ -83,8 +74,6 @@ class ListViewController: UITableViewController, UISearchBarDelegate {
                 print(error.localizedDescription)
             }
         }
-        // データのダウンロードを実行
-        urlSessionTask?.resume()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
