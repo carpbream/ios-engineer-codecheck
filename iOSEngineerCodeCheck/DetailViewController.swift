@@ -54,41 +54,38 @@ class DetailViewController: UIViewController {
         watcherCountLabel.text = "\(repo["watchers_count"] as? Int ?? 0) watchers"
         forkCountLabel.text = "\(repo["forks_count"] as? Int ?? 0) forks"
         issueCountLabel.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
-        getImage(repository: repo)
+        repositoryNameLabel.text = "\(repo["full_name"] as? String ?? "")"
 
-    }
-
-    func getImage(repository: [String: Any]) {
-
-        if repository.keys.contains("full_name") {
-            repositoryNameLabel.text = repository["full_name"] as? String
-        }
-
-        guard let owner = repository["owner"] as? [String: Any] else {
-            print("ERROR: owner in repository is not set.")
-            return
-        }
-
-        guard let ownerIconImageURL = owner["avatar_url"] as? String else {
-            print("ERROR: owner in repository is not set.")
-            return
-        }
-
-        Task {
-            do {
-                let apiClient = APIClient()
-                let data = try await apiClient.request(with: ownerIconImageURL)
-                guard let image = UIImage(data: data) else {
-                    print("ERROR: invalid data. data: \(data.description)")
+        /// 画像をダウンロードしてセットする処理。
+        /// owner, ownerIconImageURLをguardletで取得していないのは、
+        /// 今後、repoの内容を処理するが、ownerは利用しないような場合に、ここで処理が中断されないため。
+        if let owner = repo["owner"] as? [String: Any],
+           let ownerIconImageURL = owner["avatar_url"] as? String {
+            Task {
+                guard let image = await getImage(urlString: ownerIconImageURL) else {
+                    print("ERROR: 画像の取得に失敗しました")
                     return
                 }
-                
                 DispatchQueue.main.async {
                     self.ownerIconImageView.image = image
                 }
-            } catch {
-                print("ERROR: \(error.localizedDescription)")
             }
+        }
+    }
+
+    func getImage(urlString: String) async -> UIImage? {
+
+        do {
+            let apiClient = APIClient()
+            let data = try await apiClient.request(with: urlString)
+            guard let image = UIImage(data: data) else {
+                print("ERROR: invalid data. data: \(data.description)")
+                return nil
+            }
+            return image
+        } catch {
+            print("ERROR: \(error.localizedDescription)")
+            return nil
         }
     }
 
