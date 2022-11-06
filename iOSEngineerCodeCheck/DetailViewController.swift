@@ -74,26 +74,22 @@ class DetailViewController: UIViewController {
             return
         }
 
-        guard let url = URL(string: ownerIconImageURL) else {
-            print("ERROR: invalid url string.")
-            return
+        Task {
+            do {
+                let apiClient = APIClient()
+                let data = try await apiClient.request(with: ownerIconImageURL)
+                guard let image = UIImage(data: data) else {
+                    print("ERROR: invalid data. data: \(data.description)")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.ownerIconImageView.image = image
+                }
+            } catch {
+                print("ERROR: \(error.localizedDescription)")
+            }
         }
-
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
-            guard let data = data else {
-                print("ERROR: data is nil.")
-                return
-            }
-
-            guard let image = UIImage(data: data) else {
-                print("ERROR: invalid data. data: \(data.description)")
-                return
-            }
-
-            DispatchQueue.main.async {
-                self.ownerIconImageView.image = image
-            }
-        }.resume()
     }
 
 }
