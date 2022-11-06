@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DetailViewController: UIViewController, ControllerProtocol {
     typealias PresenterType = DetailViewPresenter
@@ -39,35 +40,10 @@ class DetailViewController: UIViewController, ControllerProtocol {
         issueCountLabel.text = presenter.createIssuesCountText(for: item)
         repositoryNameLabel.text = item.full_name
 
-        /// 画像をダウンロードしてセットする処理。
-        /// owner, ownerIconImageURLをguardletで取得していないのは、
-        /// 今後、repoの内容を処理するが、ownerは利用しないような場合に、ここで処理が中断されないため。
-        if let owner = item.owner {
-            Task {
-                guard let image = await getImage(urlString: owner.avatar_url) else {
-                    print("ERROR: 画像の取得に失敗しました")
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.ownerIconImageView.image = image
-                }
+        if let owner = item.owner, let url = URL(string: owner.avatar_url) {
+            DispatchQueue.main.async {
+                self.ownerIconImageView.kf.setImage(with: url)
             }
-        }
-    }
-
-    func getImage(urlString: String) async -> UIImage? {
-
-        do {
-            let apiClient = APIClient()
-            let data = try await apiClient.request(with: urlString)
-            guard let image = UIImage(data: data) else {
-                print("ERROR: invalid data. data: \(data.description)")
-                return nil
-            }
-            return image
-        } catch {
-            print("ERROR: \(error.localizedDescription)")
-            return nil
         }
     }
 
