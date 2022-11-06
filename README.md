@@ -29,3 +29,7 @@
 1. `podinstall`を実行しCocoapodsでライブラリをインストールする
 2. iOSEngineerCodeCheck.xcworkspaceを開く
 ※ 今回Cocoapodsを利用した理由については[こちら](../../wiki/Cocoapodsの利用について)をご参照ください。
+
+## アーキテクチャについて
+
+今回、アプリ全体の構造としてはVIPERアーキテクチャを採用しました。
