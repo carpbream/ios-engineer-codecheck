@@ -139,6 +139,7 @@ final class APIClientTests: XCTestCase {
     }
 
     func testPerformanceExample() throws {
+        // TODO: https://docs.github.com/ja/rest/overview/resources-in-the-rest-api#checking-your-rate-limit-status でAPI呼び出し限度を確認しながら、実際にAPIを叩いて速度を測るように変更する
         self.measure {
             Task {
                 do {
@@ -203,5 +204,5 @@ class StubURLProtocol: URLProtocol {
     override func stopLoading() {
         // do nothing
     }
-    
+
 }
