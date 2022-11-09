@@ -9,10 +9,16 @@
 import Foundation
 
 class GithubRepoRepository {
-    func getGithubRepositories(for searchWord: String) async throws -> GithubRepo {
-        let urlString = "https://api.github.com/search/repositories?q=\(searchWord)"
-        let apiClient = APIClient()
-        let data = try await apiClient.request(with: urlString)
+
+    let apiClient: APIClient
+
+    init(apiClient: APIClient = APIClient()) {
+        self.apiClient = apiClient
+    }
+
+    func getGithubRepositories(for searchWord: String, pageIndex: Int = 0) async throws -> GithubRepo {
+        let params = "/search/repositories?q=\(searchWord)&page=\(pageIndex)&per_page=100"
+        let data = try await apiClient.get(with: params)
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         return try decoder.decode(GithubRepo.self, from: data)

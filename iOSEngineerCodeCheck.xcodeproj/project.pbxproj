@@ -20,6 +20,7 @@
 		879DB9DE29175D0F00E2F8A9 /* ControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879DB9DD29175D0F00E2F8A9 /* ControllerProtocol.swift */; };
 		879DB9E029175D4E00E2F8A9 /* PresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879DB9DF29175D4E00E2F8A9 /* PresenterProtocol.swift */; };
 		879DB9E229175DA100E2F8A9 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879DB9E129175DA100E2F8A9 /* RouterProtocol.swift */; };
+		879DB9E62917921A00E2F8A9 /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879DB9E52917921A00E2F8A9 /* APIClientTests.swift */; };
 		879DB9EC2917AE6F00E2F8A9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 879DB9EB2917AE6F00E2F8A9 /* Kingfisher */; };
 		BF0A658D244F2A3B00280FA6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */; };
 		BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945DE244DC5E80012785A /* AppDelegate.swift */; };
@@ -67,6 +68,7 @@
 		879DB9DD29175D0F00E2F8A9 /* ControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerProtocol.swift; sourceTree = "<group>"; };
 		879DB9DF29175D4E00E2F8A9 /* PresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterProtocol.swift; sourceTree = "<group>"; };
 		879DB9E129175DA100E2F8A9 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
+		879DB9E52917921A00E2F8A9 /* APIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTests.swift; sourceTree = "<group>"; };
 		89F272E0EFCE85051E613330 /* Pods-iOSEngineerCodeCheckTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheckTests.release.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheckTests/Pods-iOSEngineerCodeCheckTests.release.xcconfig"; sourceTree = "<group>"; };
 		97DEE516CA7516A6AEBCD47B /* Pods-iOSEngineerCodeCheck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck.debug.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck/Pods-iOSEngineerCodeCheck.debug.xcconfig"; sourceTree = "<group>"; };
 		9AB0A95FEC03E6F240CC226F /* Pods-iOSEngineerCodeCheck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck.release.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck/Pods-iOSEngineerCodeCheck.release.xcconfig"; sourceTree = "<group>"; };
@@ -199,6 +201,22 @@
 			path = GithubRepo;
 			sourceTree = "<group>";
 		};
+		879DB9E42917917A00E2F8A9 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				879DB9E52917921A00E2F8A9 /* APIClientTests.swift */,
+				879DB9E72917973200E2F8A9 /* responseResources */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		879DB9E72917973200E2F8A9 /* responseResources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = responseResources;
+			sourceTree = "<group>";
+		};
 		BFD945D2244DC5E80012785A = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +257,7 @@
 		BFD945F4244DC5EB0012785A /* iOSEngineerCodeCheckTests */ = {
 			isa = PBXGroup;
 			children = (
+				879DB9E42917917A00E2F8A9 /* Network */,
 				BFD945F5244DC5EB0012785A /* iOSEngineerCodeCheckTests.swift */,
 				BFD945F7244DC5EB0012785A /* Info.plist */,
 			);
@@ -506,6 +525,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFD945F6244DC5EB0012785A /* iOSEngineerCodeCheckTests.swift in Sources */,
+				879DB9E62917921A00E2F8A9 /* APIClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
