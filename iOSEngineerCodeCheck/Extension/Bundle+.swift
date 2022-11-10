@@ -25,4 +25,15 @@ extension Bundle {
         }
     }
 
+    func object<T: Decodable>(for jsonResourceName: String) throws -> T {
+        guard let url = self.url(forResource: jsonResourceName, withExtension: "json") else {
+            throw URLError(.fileDoesNotExist)
+        }
+
+        let data = try Data(contentsOf: url)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return try decoder.decode(T.self, from: data)
+    }
+
 }

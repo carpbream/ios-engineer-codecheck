@@ -21,23 +21,34 @@ class DetailViewPresenter: PresenterProtocol {
     }
 
     func createLanguageText(for item: Item) -> String {
-        let lang = item.language ?? ""
-        return "Written in \(lang)"
+        guard let language = item.language else {
+            return ""
+        }
+
+        if language == "" {
+            return ""
+        } else {
+            return "Written in \(language)"
+        }
     }
 
     func createStarCountText(for item: Item) -> String {
-        return "\(item.stargazers_count) stars"
+        let count = item.stargazers_count < 0 ? 0 : item.stargazers_count
+        return "\(count) stars"
     }
 
     func createWtacherCountText(for item: Item) -> String {
-        return "\(item.watchers_count) watchers"
+        let count = item.watchers_count < 0 ? 0 : item.watchers_count
+        return "\(count) watchers"
     }
 
     func createForkCountText(for item: Item) -> String {
-        return "\(item.forks_count) forks"
+        let count = item.forks_count < 0 ? 0 : item.forks_count
+        return "\(count) forks"
     }
 
     func createIssuesCountText(for item: Item) -> String {
-        return "\(item.open_issues_count) open issues"
+        let count = item.open_issues_count < 0 ? 0 : item.open_issues_count
+        return "\(count) open issues"
     }
 }
