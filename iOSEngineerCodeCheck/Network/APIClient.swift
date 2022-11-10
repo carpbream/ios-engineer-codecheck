@@ -49,7 +49,7 @@ class APIClient {
 }
 
 enum APIClientError: Error, LocalizedError {
-    
+
     case noResponseError
     case invalidJsonError
     case urlNotFoundError

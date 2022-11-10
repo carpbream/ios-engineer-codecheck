@@ -22,6 +22,13 @@
 		879DB9E229175DA100E2F8A9 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879DB9E129175DA100E2F8A9 /* RouterProtocol.swift */; };
 		879DB9E62917921A00E2F8A9 /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879DB9E52917921A00E2F8A9 /* APIClientTests.swift */; };
 		879DB9EC2917AE6F00E2F8A9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 879DB9EB2917AE6F00E2F8A9 /* Kingfisher */; };
+		879DB9F2291BBE0200E2F8A9 /* GithubRepoRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879DB9F1291BBE0200E2F8A9 /* GithubRepoRepositoryTests.swift */; };
+		879DB9F6291BE95400E2F8A9 /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879DB9F5291BE95400E2F8A9 /* Bundle+.swift */; };
+		879DB9F8291CD93200E2F8A9 /* github_repo_maximum.json in Resources */ = {isa = PBXBuildFile; fileRef = 879DB9F7291CD93200E2F8A9 /* github_repo_maximum.json */; };
+		879DB9FB291CDE1D00E2F8A9 /* github_repo_empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 879DB9FA291CDE1D00E2F8A9 /* github_repo_empty.json */; };
+		879DB9FD291CDE4B00E2F8A9 /* github_repo_minimum_no_item.json in Resources */ = {isa = PBXBuildFile; fileRef = 879DB9FC291CDE4B00E2F8A9 /* github_repo_minimum_no_item.json */; };
+		879DB9FF291CDEAB00E2F8A9 /* github_repo_parse_error.json in Resources */ = {isa = PBXBuildFile; fileRef = 879DB9FE291CDEAB00E2F8A9 /* github_repo_parse_error.json */; };
+		879DBA01291CDF7300E2F8A9 /* github_repo_minimum.json in Resources */ = {isa = PBXBuildFile; fileRef = 879DBA00291CDF7300E2F8A9 /* github_repo_minimum.json */; };
 		BF0A658D244F2A3B00280FA6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */; };
 		BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945DE244DC5E80012785A /* AppDelegate.swift */; };
 		BFD945E1244DC5E80012785A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945E0244DC5E80012785A /* SceneDelegate.swift */; };
@@ -69,6 +76,13 @@
 		879DB9DF29175D4E00E2F8A9 /* PresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterProtocol.swift; sourceTree = "<group>"; };
 		879DB9E129175DA100E2F8A9 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
 		879DB9E52917921A00E2F8A9 /* APIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTests.swift; sourceTree = "<group>"; };
+		879DB9F1291BBE0200E2F8A9 /* GithubRepoRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepoRepositoryTests.swift; sourceTree = "<group>"; };
+		879DB9F5291BE95400E2F8A9 /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
+		879DB9F7291CD93200E2F8A9 /* github_repo_maximum.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = github_repo_maximum.json; sourceTree = "<group>"; };
+		879DB9FA291CDE1D00E2F8A9 /* github_repo_empty.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = github_repo_empty.json; sourceTree = "<group>"; };
+		879DB9FC291CDE4B00E2F8A9 /* github_repo_minimum_no_item.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = github_repo_minimum_no_item.json; sourceTree = "<group>"; };
+		879DB9FE291CDEAB00E2F8A9 /* github_repo_parse_error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = github_repo_parse_error.json; sourceTree = "<group>"; };
+		879DBA00291CDF7300E2F8A9 /* github_repo_minimum.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = github_repo_minimum.json; sourceTree = "<group>"; };
 		89F272E0EFCE85051E613330 /* Pods-iOSEngineerCodeCheckTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheckTests.release.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheckTests/Pods-iOSEngineerCodeCheckTests.release.xcconfig"; sourceTree = "<group>"; };
 		97DEE516CA7516A6AEBCD47B /* Pods-iOSEngineerCodeCheck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck.debug.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck/Pods-iOSEngineerCodeCheck.debug.xcconfig"; sourceTree = "<group>"; };
 		9AB0A95FEC03E6F240CC226F /* Pods-iOSEngineerCodeCheck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck.release.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck/Pods-iOSEngineerCodeCheck.release.xcconfig"; sourceTree = "<group>"; };
@@ -205,16 +219,37 @@
 			isa = PBXGroup;
 			children = (
 				879DB9E52917921A00E2F8A9 /* APIClientTests.swift */,
-				879DB9E72917973200E2F8A9 /* responseResources */,
 			);
 			path = Network;
 			sourceTree = "<group>";
 		};
-		879DB9E72917973200E2F8A9 /* responseResources */ = {
+		879DB9F0291BBDDE00E2F8A9 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				879DB9F3291BE8A800E2F8A9 /* resource */,
+				879DB9F1291BBE0200E2F8A9 /* GithubRepoRepositoryTests.swift */,
 			);
-			path = responseResources;
+			path = Data;
+			sourceTree = "<group>";
+		};
+		879DB9F3291BE8A800E2F8A9 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				879DB9F7291CD93200E2F8A9 /* github_repo_maximum.json */,
+				879DB9FA291CDE1D00E2F8A9 /* github_repo_empty.json */,
+				879DB9FC291CDE4B00E2F8A9 /* github_repo_minimum_no_item.json */,
+				879DB9FE291CDEAB00E2F8A9 /* github_repo_parse_error.json */,
+				879DBA00291CDF7300E2F8A9 /* github_repo_minimum.json */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
+		879DB9F4291BE92900E2F8A9 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				879DB9F5291BE95400E2F8A9 /* Bundle+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		BFD945D2244DC5E80012785A = {
@@ -242,9 +277,10 @@
 		BFD945DD244DC5E80012785A /* iOSEngineerCodeCheck */ = {
 			isa = PBXGroup;
 			children = (
-				879DB9C9291742C700E2F8A9 /* Data */,
 				879DB9C62917426500E2F8A9 /* Module */,
+				879DB9C9291742C700E2F8A9 /* Data */,
 				879DB9C329172AD500E2F8A9 /* Network */,
+				879DB9F4291BE92900E2F8A9 /* Extension */,
 				BFD945DE244DC5E80012785A /* AppDelegate.swift */,
 				BFD945E0244DC5E80012785A /* SceneDelegate.swift */,
 				BFD945E7244DC5EB0012785A /* Assets.xcassets */,
@@ -257,6 +293,7 @@
 		BFD945F4244DC5EB0012785A /* iOSEngineerCodeCheckTests */ = {
 			isa = PBXGroup;
 			children = (
+				879DB9F0291BBDDE00E2F8A9 /* Data */,
 				879DB9E42917917A00E2F8A9 /* Network */,
 				BFD945F5244DC5EB0012785A /* iOSEngineerCodeCheckTests.swift */,
 				BFD945F7244DC5EB0012785A /* Info.plist */,
@@ -398,6 +435,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				879DB9FD291CDE4B00E2F8A9 /* github_repo_minimum_no_item.json in Resources */,
+				879DBA01291CDF7300E2F8A9 /* github_repo_minimum.json in Resources */,
+				879DB9FB291CDE1D00E2F8A9 /* github_repo_empty.json in Resources */,
+				879DB9FF291CDEAB00E2F8A9 /* github_repo_parse_error.json in Resources */,
+				879DB9F8291CD93200E2F8A9 /* github_repo_maximum.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +554,7 @@
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
 				879DB9D82917568A00E2F8A9 /* DetailViewRouter.swift in Sources */,
 				879DB9E229175DA100E2F8A9 /* RouterProtocol.swift in Sources */,
+				879DB9F6291BE95400E2F8A9 /* Bundle+.swift in Sources */,
 				879DB9DA2917569700E2F8A9 /* ListViewRouter.swift in Sources */,
 				879DB9CE2917431000E2F8A9 /* GithubRepoRepository.swift in Sources */,
 				879DB9E029175D4E00E2F8A9 /* PresenterProtocol.swift in Sources */,
@@ -524,6 +567,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				879DB9F2291BBE0200E2F8A9 /* GithubRepoRepositoryTests.swift in Sources */,
 				BFD945F6244DC5EB0012785A /* iOSEngineerCodeCheckTests.swift in Sources */,
 				879DB9E62917921A00E2F8A9 /* APIClientTests.swift in Sources */,
 			);
